@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="userInterface.css">
+  <title>LogIn</title>
+</head>
+
+<body>
+  <div class="topnav" id="myTopnav">
+    <a href="#home" class="active">Home</a>
+    <a href="#dashboard">dashboard</a>
+    <a href="#contact">Contact</a>
+    <a href="#login">Login</a>
+    <a href="javascript:void(0);" class="icon" onclick="navbar()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+  <h1>Welcome to <b><span>Banka</span></b></h1>
+  <form method="POST" id="adminLoginForm">
+    <h3>Email: </h3>
+    <input type="email" id="adminEmail" placeholder="abc@xyz.com">
+
+    <h3>Password: </h3>
+    <input type="password" id="password" placeholder="password">
+    <p>Forgot password? Click <a href="#">here</a> to retrieve</p>
+    <input type="submit" value="Log In"></input>
+
+  </form>
+  <p>Are you a new cashier? Click <a href="adminSignUp.html">here</a> to sign up</p>
+
+  <script src="../user-interface/userInterface.js"></script>
+</body>
+
+</html>
