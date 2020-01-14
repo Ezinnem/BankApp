@@ -135,3 +135,21 @@
     text-align: left;
   }
 }
+
+ body {
+   background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7), url(../images/computer5.jpg));
+  background-size: cover;
+  background-position: center;
+
+ }
+ 
+
+ form {
+   position: relative;
+   z-index: 1;
+   background-color: #ffffff;
+   max-width: 360px;
+   margin: 0 auto 100px;
+   padding: 45px;
+   text-align: center;
+ }
