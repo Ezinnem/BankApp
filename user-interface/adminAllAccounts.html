@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="userInterface.css">
+  <title>SignUp</title>
+</head>
+
+<body>
+  <div class="topnav" id="myTopnav">
+    <a href="adminSignUp.html" class="active">Create Admin Account</a>
+
+    <div class="dropdown">
+      <button class="dropbtn">Activate/Deactivate Client
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="adminActivateClient.html">Activate Client</a>
+        <a href="adminActivateClient.html">Deactivate Client</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Credit/Debit Client
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="adminCreditClient.html">Credit Client</a>
+        <a href="adminCreditClient.html">Debit Client</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn">View Accounts
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="adminAllAccounts.html">All Clients</a>
+        <a href="adminAllAccounts.html">Single Client</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Login
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="adminLogin.html">Admin Login</a>
+        <a href="userLogIn.html">Customer Login</a>
+      </div>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="navbar()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+
+  <h1>Welcome to <b><span>Banka</span></b></h1>
+  <h3>Dear Admin...</h3>
+
+  <h2>View All users</h2>
+  <h2>View single user</h2>
+
+  <table>
+    <tr>
+      <th>S/N</th>
+      <th>Client Name</th>
+      <th>Account Number</th>
+      <th>Balance(NGN)</th>
+      <th>Options</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Alfreds Futterkiste</td>
+      <td>3019281029</td>
+      <td>12000654.76</td>
+      <td><button id="view">View</button></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Casey Laff</td>
+      <td>29916192823</td>
+      <td>87600654.76</td>
+      <td><button id="view">View</button></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>John Hillz</td>
+      <td>2208374789</td>
+      <td>436712654.76</td>
+      <td><button id="view">View</button></td>
+    </tr>
+    
+  </table>
+  </body>
+  </html>
