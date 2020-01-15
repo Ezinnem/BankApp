@@ -12,6 +12,8 @@
 </head>
 
 <body>
+  <header>
+    <h1>Banka <span>App</span></h1>
   <div class="topnav" id="myTopnav">
     <a href="userAccountBal.html" class="active">My Account</a>
     <a href="userAccTransaction.html">Transaction History</a>
@@ -30,10 +32,17 @@
       <i class="fa fa-bars"></i>
     </a>
   </div>
+  </header>
 
 
-  <h1>Dear Esteemed Customer,Welcome to <b><span>Banka</span></b></h1>
-  <h3>Create Your Account</h3>
+  <h1>Dear Esteemed Customer, Welcome to <b><span>Banka</span></b></h1>
+
+  <div class="intro">
+    <p>We are dedicated to serving you better. <br>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis, nemo reiciendis ut magni harum eum quos esse omnis quam dolores perferendis modi qui neque hic!<br> . Open an account with us today and enjouy seamless services from <span>Banka</span></p>
+  </div>
+
+  <h2>Create Your Account</h2>
 
   <form id="accountForm" method="POST" class="accountForm" action="userAccountBal.html">
     <h3>First Name:</h3>
@@ -54,11 +63,15 @@
     <h3>City:</h3>
     <input type="text" id="city" class="city" required> <br />
     <h3>Country:</h3>
-    <input type="text" id="country" class="country" required> <br />
+    <input type="text" id="country" class="country" required> <br>
 
     <button type="submit">Submit</button>
 
   </form>
+  
+ <footer>
+    &copy; ZinnyCode 2020
+  </footer>
 
 </body>
 
