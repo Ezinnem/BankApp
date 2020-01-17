@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="userInterface.css">
+  <title>SignUp</title>
+</head>
+
+<body>
+
+  <h1>Welcome to <b><span>Banka</span></b></h1>
+  <h3>Dear Admin...</h3>
+
+  <form id="adminSignUpForm" method="POST" action="adminLogin.html">
+
+    <fieldset>
+      <h3>
+        <legend>Personal Details</legend>
+      </h3>
+      <h4>First Name:</h4>
+      <input id="firstName" type="text" placeholder="FULL Name" required>
+
+      <h4>Last Name:</h4>
+      <input id="lastName" type="text" placeholder="Last Name" required>
+
+      <h4>Email Address:</h4>
+      <input id="userEmail" type='email' placeholder="abc@xyz.com" required>
+
+      <h4>Password:</h4>
+      <input id="password" type='password' placeholder="password" required>
+
+      <h4>Confirm Password:</h4>
+      <input id="confirmPassword" type='password' placeholder="password" required>
+    </fieldset> <br />
+
+    <fieldset>
+      <h3>
+        <legend>Admin Details</legend>
+      </h3>
+      <h4>Admin Number:</h4>
+      <input id="AdminNumber" type="number" placeholder="Admin Reg Number" required>
+
+      <h4>
+        <label>Select your rank</label>
+        <select id="adminRank">
+          <option value="Manager">Manager</option>
+          <option value="Cashier">Cashier</option>
+          <option value="ICT personel">ICT personel</option>
+        </select>
+      </h4>
+    </fieldset>
+    <br />
+
+    <button type="submit">SIGN UP</button>
+  </form>
+  <p>Are you a registered admin? Click <a href="adminLogIn.html">here</a> to log in</p>
+
+  <script src="../user-interface/userInterface.js"></script>
+ <footer>
+    &copy; ZinnyCode 2020
+  </footer>
+
+</body>
+
+</html>
