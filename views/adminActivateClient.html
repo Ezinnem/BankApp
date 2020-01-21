@@ -12,12 +12,12 @@
 
 <body>
   <div class="topnav">
-    <a href="adminSignUp.html" class="active">Create Admin Account</a>
-    <a href="adminActivateClient.html">Deactivate/Activate Client</a>
-    <a href="adminCreditClient.html">Credit/Debit Client</a>
-    <a href="adminAllAccounts.html">All Clients</a>
-    <a href="adminLogin.html">Admin Login</a>
-    <a href="userLogIn.html">Customer Login</a>
+    <a href="/adminSignUp" class="active">Create Admin Account</a>
+    <a href="/adminActivateClient">Deactivate/Activate Client</a>
+    <a href="/adminCreditClient">Credit/Debit Client</a>
+    <a href="/adminAllAccounts">All Clients</a>
+    <a href="/adminLogin">Admin Login</a>
+    <a href="/userLogIn">Customer Login</a>
   </div>
 
 
@@ -43,27 +43,35 @@
       <td>Alfreds Futterkiste</td>
       <td>3019281029</td>
       <td>12000654.76</td>
-      <td><button id="activate">Activate</button></td>
-      <td><button id="deactivate">Deactivate</button></td>
-      <td><button id="delete">Delete</button></td>
+      <td><form action="/adminActivateClient" method="POST" id="activate">Activate</form></td>
+      <td><form action="/adminDeactivateClient"  method="POST" id="deactivate">Deactivate</form></td>
+      <td><form  method="POST" action="/delete" id="delete">Delete</form></td>
     </tr>
     <tr>
       <td>2</td>
       <td>Casey Laff</td>
       <td>29916192823</td>
       <td>87600654.76</td>
-      <td><button id="activate">Activate</button></td>
-      <td><button id="deactivate">Deactivate</button></td>
-      <td><button id="delete">Delete</button></td>
+      <td>
+        <form action="/adminActivateClient" method="POST"id="activate">Activate</form>
+      </td>
+      <td>
+        <form action="/adminDeactivateClient" method="POST"id="deactivate">Deactivate</form>
+      </td>
+      <td><form method="POST" action="/delete" id="delete">Delete</form></td>
     </tr>
     <tr>
       <td>3</td>
       <td>John Hillz</td>
       <td>2208374789</td>
       <td>436712654.76</td>
-      <td><button id="activate">Activate</button></td>
-      <td><button id="deactivate">Deactivate</button></td>
-      <td><button id="delete">Delete</button></td>
+     <td>
+       <form action="/adminActivateClient" method="POST"id="activate">Activate</form>
+     </td>
+     <td>
+       <form action="/adminDeactivateClient" method="POST" id="deactivate">Deactivate</form>
+     </td>
+      <td><form  method="POST" action="/delete" id="delete">Delete</form></td>
     </tr>
 
   </table>
