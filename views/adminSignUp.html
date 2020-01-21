@@ -15,20 +15,17 @@
   <h1>Welcome to <b><span>Banka</span></b></h1>
   <h3>Dear Admin...</h3>
 
-  <form id="adminSignUpForm" method="POST" action="adminLogin.html">
+  <form id="adminSignUpForm" method="POST" action="/adminLogin">
 
     <fieldset>
       <h3>
         <legend>Personal Details</legend>
       </h3>
-      <h4>First Name:</h4>
-      <input id="firstName" type="text" placeholder="FULL Name" required>
-
-      <h4>Last Name:</h4>
-      <input id="lastName" type="text" placeholder="Last Name" required>
+      <h4>Full Name:</h4>
+      <input id="fullName" type="text" placeholder="FULL Name" required>
 
       <h4>Email Address:</h4>
-      <input id="userEmail" type='email' placeholder="abc@xyz.com" required>
+      <input id="adminEmail" type='email' placeholder="abc@xyz.com" required>
 
       <h4>Password:</h4>
       <input id="password" type='password' placeholder="password" required>
@@ -42,7 +39,7 @@
         <legend>Admin Details</legend>
       </h3>
       <h4>Admin Number:</h4>
-      <input id="AdminNumber" type="number" placeholder="Admin Reg Number" required>
+      <input id="adminNumber" type="number" placeholder="Admin Reg Number" required>
 
       <h4>
         <label>Select your rank</label>
@@ -57,7 +54,9 @@
 
     <button type="submit">SIGN UP</button>
   </form>
-  <p>Are you a registered admin? Click <a href="adminLogIn.html">here</a> to log in</p>
+  <form action="/adminLogin" method="POST">
+  <p>Are you a registered admin? Click <a href="/adminLogIn">here</a> to log in</p>
+  </form>
 
   <script src="../user-interface/userInterface.js"></script>
  <footer>
