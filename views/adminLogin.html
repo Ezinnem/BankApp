@@ -14,7 +14,7 @@
 
   <h1>Welcome to <b><span>Banka</span></b></h1>
 
-  <form method="POST" id="adminLoginForm" class="adminLoginForm" action="adminAllAccounts.html">
+  <form method="POST" id="adminLoginForm" class="adminLoginForm" action="/adminAllAccounts">
     <h3>Email: </h3>
     <input type="email" id="adminEmail" placeholder="abc@xyz.com">
 
@@ -24,7 +24,9 @@
     <button type="submit">LOG IN</button>
 
   </form>
-  <p>Are you a new cashier? Click <a href="adminSignUp.html">here</a> to sign up</p>
+  <form action="/adminSignUp" method="POST">
+  <p>Are you a new cashier? Click <a href="/adminSignUp">here</a> to sign up</p>
+  </form>
 
 
 
