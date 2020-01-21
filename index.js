@@ -2,31 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cons = require('consolidate');
 const path = require('path');
-const mongoose = require('mongoose');
 
-
-mongoose.connect('mongodb://localhost/bank_details', {
-  useNewUrlParser: true,
-});
-mongoose.set('useNewUrlParser', true);
-
-const db = mongoose.connection;
-
-// check connection
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
-
-// check for db errors
-db.on('error', (err) => {
-  console.log(err);
-});
-
+const BankaUser = {
+  fullName: 'Ifeoma okeke',
+  userEmail: 'ifyokeke@gmail.com',
+  password: 'Ify123',
+  nuban: '1005691124',
+  accountType: 'Savings',
+};
 // initializing app
 const app = express();
 
-// bring in models
-const BankaUser = require('./models/banka_model');
 
 // view engine
 app.engine('html', cons.swig);
@@ -52,6 +38,7 @@ app.get('/', (req, res) => {
 
 // userLogin submit
 app.post('/userLogin', (req, res) => {
+  let errors;
   if (errors) {
     res.render('userLogin.html', {
       title: 'Check Login Details again',
@@ -71,6 +58,7 @@ app.get('/userSignUp', (req, res) => {
 });
 
 app.post('/userSignUp', (res, req) => {
+  let errors;
   if (errors) {
     res.render('userSignUp.html', {
       title: 'Check Your Details',
@@ -87,6 +75,7 @@ app.post('/userSignUp', (res, req) => {
       if (err) {
         console.log(err);
       } else {
+        user.push(BankaUser);
         res.redirect('/');
       }
     });
