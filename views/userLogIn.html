@@ -14,7 +14,7 @@
 
   <h1>Dear Esteemed Customer,Welcome to <b><span>Banka</span></b></h1>
   <h3>User <span>LogIn</span></h3>
-  <form method="POST" id="userLoginForm" action="userAccountBal.html">
+  <form method="POST" id="userLoginForm" action="/userAccountBal">
     <h3>Email: </h3>
     <input type="email" id="userEmail" placeholder="abc@xyz.com" required>
 
@@ -24,7 +24,9 @@
     <button type="submit" value="Log In">Log In</button>
 
   </form>
-  <p>Not registered yet? Click <a href="userSignUp.html">here</a> to sign up</p>
+  <form action="/userSignUp" method="POST">
+  <p>Not registered yet? Click <a href="/userSignUp">here</a> to sign up</p>
+  </form>
 
 
 

@@ -14,15 +14,12 @@
 
   <h3>User <span>Sign Up</span></h3>
 
-<form id="userSignUpForm" method="POST" action="userLogIn.html">
+<form id="userSignUpForm" method="POST" action="/userSignUp">
 
     <fieldset>
       <h3><legend>Personal Details</legend></h3>
-    <h4>First Name:</h4> 
-    <input id ="firstName" type="text" placeholder="FULL Name" required>
-
-    <h4>Last Name:</h4> 
-    <input id="lastName" type="text" placeholder="Last Name" required>
+    <h4>Full Name:</h4> 
+    <input id ="fullName" type="text" placeholder="FULL Name" required>
 
     <h4>Email Address:</h4> 
     <input id="userEmail" type='email' placeholder="abc@xyz.com" required>
@@ -41,7 +38,7 @@
       
       <h4>
         <label>Select Account type</label>
-        <select id="myList">
+        <select id="accountType">
           <option value="Savings">Savings Account</option>
           <option value="Current">Curent Account</option>
           <option value="Coperate">Coperate Account</option>
@@ -55,7 +52,9 @@
 
 
   </form>
+  <form action="/" method="POST">
 <p>Already a user? Click <a href="userLogIn.html">here</a> to log in</p>
+</form>
 
 
 <script src="../user-interface/userInterface.js"></script>
