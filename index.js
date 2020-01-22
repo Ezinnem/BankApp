@@ -159,7 +159,7 @@ app.get('/adminSignUp', (req, res) => {
 });
 
 app.post('/adminSignUp', (req, res) => {
-  let errors;
+  const errors;
   if (errors) {
     res.render('adminSignUp.html', {
       title: 'Check Your Details',
