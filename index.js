@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 
 // userLogin submit
 app.post('/userLogin', (req, res) => {
-  let errors;
+  const errors;
   if (errors) {
     res.render('userLogin.html', {
       title: 'Check Login Details again',
@@ -70,7 +70,7 @@ app.get('/userSignUp', (req, res) => {
 });
 
 app.post('/userSignUp', (req, res) => {
-  let errors;
+  const errors;
   if (errors) {
     res.render('userSignUp.html', {
       title: 'Check Your Details',
@@ -139,7 +139,7 @@ app.get('/adminLogin', (req, res) => {
 
 // adminLogin submit
 app.post('/adminLogin', (req, res) => {
-  let errors;
+  const errors;
   if (errors) {
     res.render('adminLogin.html', {
       title: 'Check Login Details again',
@@ -159,7 +159,7 @@ app.get('/adminSignUp', (req, res) => {
 });
 
 app.post('/adminSignUp', (req, res) => {
-  let errors;
+  const errors;
   if (errors) {
     res.render('adminSignUp.html', {
       title: 'Check Your Details',
@@ -230,4 +230,3 @@ app.post('/adminDeactivateClient', (req, res) => {
 app.listen(3000, () => {
   console.log('Server started at port 3000...');
 });
-
