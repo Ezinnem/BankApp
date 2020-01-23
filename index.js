@@ -4,6 +4,23 @@ const cons = require('consolidate');
 const path = require('path');
 
 // Creating a user signup details
+let bankaUser =[
+  {
+    "id": "1", 
+    "fullName": "John Doe",
+    "userEmail": "jonny@gmail.com",
+    "password": "12345",
+     "nuban": "1001201301", "Balance": "200,000,000NGN"},
+  {
+    "id": "2",
+    "fullName": "Ngozi Okafor",
+    "userEmail": "ngok@gmail.com",
+    "password": "12345",
+    "nuban": "1001401501",
+    "accountType": "Savings",
+    "Balance": "500,000,000NGN"
+  }
+]
 
 function BankaUser(fullName, userEmail, password, nuban, accountType) {
   this.fullName = fullName;
@@ -48,6 +65,10 @@ app.get('/', (req, res) => {
   res.render('userLogin.html');
 });
 
+app.get('/userLogin', (req, res) => {
+  res.render('userLogin.html');
+});
+
 // userLogin submit
 app.post('/userLogin', (req, res) => {
   let errors;
@@ -77,7 +98,8 @@ app.post('/userSignUp', (req, res) => {
       errors,
     });
   } else {
-    const user = new BankaUser();
+    
+    let user = new bankaUser;
     user.fullName = req.body.fullName;
     user.userEmail = req.body.userEmail;
     user.password = req.body.password;
@@ -86,7 +108,7 @@ app.post('/userSignUp', (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        user.push(BankaUser);
+        user.push(bankaUser);
         res.redirect('/');
       }
     });
@@ -159,7 +181,7 @@ app.get('/adminSignUp', (req, res) => {
 });
 
 app.post('/adminSignUp', (req, res) => {
-  const errors;
+  let errors;
   if (errors) {
     res.render('adminSignUp.html', {
       title: 'Check Your Details',
@@ -186,7 +208,7 @@ app.post('/adminSignUp', (req, res) => {
 
 app.get('/adminAllAccounts', (req, res) => {
   res.render('adminAllAccounts', {
-    title: 'Admin Page',
+    bankaUser: bankaUser,
   });
 });
 app.post('/adminAllAccounts', (req, res) => {
