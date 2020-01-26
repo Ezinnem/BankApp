@@ -1,0 +1,130 @@
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+ body {
+   background-color: rgb(2, 59, 59);
+   background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url("../images/computer5.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #f2f2f2;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+ }
+ 
+
+ form {
+   position: relative;
+   max-width: 360px;
+   margin: 0 auto 100px;
+   padding: 45px;
+   text-align: center;
+   color: white;
+   background-color: teal;
+  
+ }
+ span {
+   color: rgb(245, 46, 11);
+   font-style: italic;
+ }
+ h3{
+   font-weight: 800;
+   font-style: italic;
+ }
+ input {
+   width: 70%;
+   height: 20px;
+ }
+ input:hover,
+ input:active {
+   width: 80%;
+   height: 25px;
+ }
+ button {
+   width: 40%;
+   height: 30px;
+   border: 10px;
+   text-transform: uppercase;
+   font-size: large;
+   background-color: tomato;
+ }
+ button:hover{
+   color: white;
+   background-color: indigo;
+ }
+ .intro, .services {
+   background-color: seashell;
+   color: black;
+   text-align: center;
+   font-size: medium;
+   font-weight: 700; 
+   border-bottom: 5px solid orange;
+ }
+
+ table {
+   font-family: arial, sans-serif;
+   border-collapse: collapse;
+   width: 100%;
+   background-color: aliceblue;
+   color: black;
+ }
+
+ td,
+ th {
+   border: 1px solid #dddddd;
+   text-align: left;
+   padding: 8px;
+ }
+
+ tr:nth-child(even) {
+   background-color: #dddddd;
+ }
+
+ footer {
+   height: 30px;
+   background-color: darkslategrey;
+   color: white;
+   font-style: oblique;
+   font-size: large;
+   margin-bottom: 1%;
+ }
+ .news {
+   width: 100%;
+   border-bottom: 5px solid orange;
+   
+
+ }
+ .account {
+   background-color: paleturquoise;
+   color: black;
+   border: 3px solid green;
+   height: 10%;
+   font-size: xx-large;
+ }
+ .profile {
+   background-color: rgb(68, 62, 62);
+   color: mintcream;
+   border: 2px solid white;
+   font-size: x-large;
+   text-transform: capitalize;
+ }

@@ -244,11 +244,11 @@ app.post('/adminActivateClient', (req, res) => {
 
 app.post('/adminDeactivateClient', (req, res) => {
   res.send('Account Deactivated', {
-    title: 'All Account Page'
-  })
-})
+    title: 'All Account Page',
+  });
+});
 
-;
+
 app.listen(3000, () => {
   console.log('Server started at port 3000...');
 });
