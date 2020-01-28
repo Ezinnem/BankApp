@@ -26,7 +26,8 @@
 
   <h2>View All users</h2>
   <h2>View single user</h2>
-
+ 
+  <form action="/api/v1/userAccounts" method="POST">
   <table>
     <tr>
       <th>S/N</th>
@@ -40,24 +41,46 @@
       <td>Alfreds Futterkiste</td>
       <td>3019281029</td>
       <td>12000654.76</td>
-      <td><button id="view">View</button></td>
+      <td><button formaction="/api/v1/userAccounts/:id" id="view">View</button></td>
     </tr>
     <tr>
       <td>2</td>
       <td>Casey Laff</td>
       <td>29916192823</td>
       <td>87600654.76</td>
-      <td><button id="view">View</button></td>
+      <td><button formaction="/api/v1/userAccounts/:id" id="view">View</button></td>
     </tr>
     <tr>
       <td>3</td>
       <td>John Hillz</td>
       <td>2208374789</td>
       <td>436712654.76</td>
-      <td><button id="view">View</button></td>
+      <td><button formaction="/api/v1/userAccounts/:id" id="view">View</button></td>
     </tr>
 
   </table>
+
+  </form>
+
+  <form action='/api/v1/adminAllAccounts' method="POST">
+  <button type="submit">Create User Account</button>
+  </form>
+
+  <form action="/api/v1/adminAllAccounts" method="POST">
+    <button type="submit">Get All Account</button>
+  </form>
+
+  <form action="/api/v1/adminAllAccounts/:id" method="POST">
+    <button type="submit">Get this User Account</button>
+  </form>
+
+  <form action="/api/v1/adminAllAccounts/update/:id" method="POST">
+    <button type="submit">Update User Account</button>
+  </form>
+
+  <form action="/api/v1/adminAllAccounts/delete/:id" method="POST">
+    <button type="submit">Delete User Account</button>
+  </form>
 
   
   
