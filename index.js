@@ -234,7 +234,7 @@ app.put('/api/v1/adminAllAccounts/update/:id', UserAccount.update);
 //Admin delete account
 app.delete('/api/v1/adminAllAccounts/delete/:id', UserAccount.delete);
 
-app.post('/adminAllAccounts', (req, res) => {
+app.post('/api/v1/adminAllAccounts', (req, res) => {
   res.render('adminAllAccounts', {
     title: 'All Account Page',
   });
