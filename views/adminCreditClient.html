@@ -12,12 +12,12 @@
 
 <body>
   <div class="topnav">
-    <a href="/adminSignUp" class="active">Create Admin Account</a>
-    <a href="/adminActivateClient">Deactivate/Activate Client</a>
-    <a href="/adminCreditClient">Credit/Debit Client</a>
-    <a href="/adminAllAccounts">All Clients</a>
-    <a href="/adminLogin">Admin Login</a>
-    <a href="/userLogIn">Customer Login</a>
+    <a href="/api/v1/adminSignUp" class="active">Create Admin Account</a>
+    <a href="/api/v1/adminActivateClient">Deactivate/Activate Client</a>
+    <a href="/api/v1/adminCreditClient">Credit/Debit Client</a>
+    <a href="/api/v1/adminAllAccounts">All Clients</a>
+    <a href="/api/v1/adminLogin">Admin Login</a>
+    <a href="/api/v1/userLogIn">Customer Login</a>
   </div>
 
   <h1>Welcome to <b><span>Banka</span></b></h1>
@@ -26,13 +26,16 @@
   <h2>Credit User</h2>
   <h2>Debit User</h2>
 
-  <form action="#">
-    First name:<br>
-    <input type="text" name="firstName" id="firstName" required><br>
-    Last name:<br>
-    <input type="text" name="lastName" id="lastName"><br>
+  <form action="">
+    Full name:<br>
+    <input type="text" name="fullName" id="fullName" required><br>
+  
     NUBAN:<br>
     <input type="number" name="nuban" id="nuban">
+    <br>
+    <br />
+    BALANCE:<br>
+    <input type="number" name="Balance" id="Balance">
     <br>
     <br />
     <input type="submit" value="Credit" id="credit"> <input type="submit" value="Debit" id="debit">
