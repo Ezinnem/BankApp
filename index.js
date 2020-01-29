@@ -6,7 +6,6 @@ const path = require('path');
 const UserAccount = require('./controllers/UserAccount');
 
 
-
 // initializing app
 const app = express();
 
@@ -29,15 +28,16 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
 // Creating a user signup details
-let bankaUsers =[
+const bankaUsers = [
   {
-    id: 1, 
+    id: 1,
     fullName: 'John Doe',
     userEmail: 'jonny@gmail.com',
     password: '12345',
-     nuban: '1001201301',
+    nuban: '1001201301',
     accountType: 'Current',
-     Balance: '200,000NGN'},
+    Balance: '200,000NGN',
+  },
   {
     id: 2,
     fullName: 'Ngozi Okafor',
@@ -45,26 +45,26 @@ let bankaUsers =[
     password: '12345',
     nuban: '1001401501',
     accountType: 'Savings',
-    Balance: '500,000,000NGN'
-  }
-]
+    Balance: '500,000,000NGN',
+  },
+];
 
 
-let bankaAdmins =[
+const bankaAdmins = [
   {
-    id: 1, 
+    id: 1,
     fullName: 'AdJohn Doe',
     adminEmail: 'jonny@gmail.com',
     password: '12345',
-     },
+  },
   {
     id: 2,
     fullName: 'AdNgozi Okafor',
     adminEmail: 'ngok@gmail.com',
     password: '12345',
-  
-  }
-]
+
+  },
+];
 
 // Creating an admin signup details
 function BankaAdmin(fullName, adminEmail, password, adminNumber, adminRank) {
@@ -79,19 +79,6 @@ function BankaAdmin(fullName, adminEmail, password, adminNumber, adminRank) {
 app.get('/', (req, res) => {
   res.render('userLogin.html');
 });
-
-app.get('/api/v1/userLogin',  (req, res) => {
-  res.render('userLogin.html');
-});
-
-// userLogin submit
-app.post('/api/v1/userLogin/:id', (req, res) => {
-  const user = user.find(bankaUsers => bankaUsers.id === parseInt(req.params.id));
-  if(!user) res.send(404).send("User Not Found");
-  res.send(user);
-  }
-);
-
 // UserSignUp
 
 app.get('/api/v1/userSignUp', (req, res) => {
@@ -99,31 +86,44 @@ app.get('/api/v1/userSignUp', (req, res) => {
 });
 
 app.post('/api/v1/userSignUp', (req, res) => {
-  let {error} = validateBankaUser (req.body);
+  const { error } = validateBankaUser(req.body);
   if (error) {
-    res.status(400).send(error.details[0].message)
+    res.status(400).send(error.details[0].message);
     return;
   }
   let bankauser = {
-    id: bankaUsers.length +1,
+    id: bankaUsers.length + 1,
     fullName: req.body.fullName,
     userEmail: req.body.userEmail,
     password: req.body.password,
-    nuban: req.body.nuban, 
-  }
+    nuban: req.body.nuban,
+  };
   bankausers.push(bankaUser);
   res.send(bankauser);
 });
-  
+
+//Login
+app.get('/api/v1/userLogin', (req, res) => {
+  res.render('userLogin.html');
+});
+
+// userLogin submit
+app.post('/api/v1/userLogin/:id', (req, res) => {
+  const user = bankaUsers.find(c => c.id === parseInt(req.params.id));
+  if (!user) res.send(404).send('User Not Found');
+  // res.sendStatus(`Your Account balance is ${user.Balance}`);
+  res.redirect('/api/v1/userAccountBal/:id');
+});
+
 
 // AccountBalance
 app.get('/api/v1/userAccountBal/:id', (req, res) => {
-  let bankaUser = bankaUsers.find(c => c.id === parseInt(req.params.id));
+  const bankaUser = bankaUsers.find((c) => c.id === parseInt(req.params.id));
 
   if (!bankaUser) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Ooops... Cant find what you are looking for!</h2>');
-  res.send(bankauser);
+  res.sendStatus(bankaUser.Balance);
 });
-  
+
 
 app.post('/api/v1/userAccountBal', (req, res) => {
   res.render('userAccountBal');
@@ -131,21 +131,20 @@ app.post('/api/v1/userAccountBal', (req, res) => {
 
 // Accout Transaction
 app.put('/api/v1/userAccTransaction/:id', (req, res) => {
-  let bankaUser = bankaUsers.find(c => c.id === parseInt(req.params.id));
-  if(!bankaUser) res.status(404).send("Not Found");
+  const bankaUser = bankaUsers.find((c) => c.id === parseInt(req.params.id));
+  if (!bankaUser) res.status(404).send('Not Found');
 
   const { error } = validateBankaUser(req.body);
-  if(error){
+  if (error) {
     res.status(400).send(error.details[0].message);
     return;
   }
- bankaUser.fullName = req.body.fullName;
+  bankaUser.fullName = req.body.fullName;
   bankaUser.userEmail = req.body.userEmail;
   bankaUser.nuban = req.body.nuban;
   bankaUser.Balance = req.body.Balance;
   res.send(bankaUser);
-
-  });
+});
 app.get('/api/v1/userAccTransaction', (req, res) => {
   res.render('userAccTransaction', {
     title: 'Your Transactions',
@@ -154,56 +153,45 @@ app.get('/api/v1/userAccTransaction', (req, res) => {
 
 // Create Account
 app.get('/api/v1/createAccount', (req, res) => {
-res.render('createAccount', {
+  res.render('createAccount', {
     title: 'Your Transactions',
   });
 });
 
 
 app.post('/api/v1/createAccount', (req, res) => {
-  let { error } = validateBankaUser (req.body);
-  if (error){
-    res.status(400).send(error.details[0].message)
+  const { error } = validateBankaUser(req.body);
+  if (error) {
+    res.status(400).send(error.details[0].message);
     return;
   }
-  let userAccount = {
+  const userAccount = {
     id: UserAccount.length + 1,
     fullName: req.body.fullName,
     userEmail: req.body.userEmail,
     password: req.body.password,
-    nuban: req.body.nuban
+    nuban: req.body.nuban,
   };
-    UserAccount.push(userAccount);
-    res.send(userAccount);
-
+  UserAccount.push(userAccount);
+  res.send(userAccount);
 });
 // ADMIN AND STAFF
 //  Admin SignUp
 
 app.get('/api/v1/adminSignUp', (req, res) => {
-  res.render('adminSignUp.html', {
-    title: 'Admin SignUp',
-  });
+  res.render('adminSignUp.html');
 });
 app.post('/api/v1/adminSignUp', (req, res) => {
-      let {
-        error
-      } = validateBankaAdmin(req, res);
-      if (error) {
-        res.status(400).send(error.details[0].message)
-        return;
-      }
-      let bankaAdmin = {
-        id: bankaAdmins.length + 1,
-        fullName: req.body.fullName,
-        adminEmail: req.body.adminEmail,
-        password: req.body.password
-      };
-      bankaAdmins.push(bankaAdmin);
-      res.send(bankaAdmin);
-      res.redirect('/api/v1/adminLogin');
-    });
-
+  let bankaAdmin = {
+    id: bankaAdmins.length + 1,
+    fullName: req.body.fullName,
+    adminEmail: req.body.adminEmail,
+    password: req.body.password,
+  };
+  bankaAdmins.push(bankaAdmin);
+  // res.send(bankaAdmin);
+  res.redirect('/api/v1/adminLogin');
+});
 
 
 // Admin Login
@@ -217,22 +205,29 @@ app.post('/api/v1/adminLogin', (req, res) => {
 });
 
 //  Admin view all accounts Page
-app.get('/api/v1/adminAllAccounts', UserAccount.getAll);
+app.get('/api/v1/adminAllAccounts/all',(req, res) => { 
+ res.send(UserAccount.findAll);
+});
 
-//admin view a single account
-app.get('/api/v1/useraccounts/:id', UserAccount.getOne);
+// admin view a single account
+app.get('/api/v1/adminAllAccounts/:id', (req, res) => {
+  res.send(UserAccount.findOne);
+});
 
-app.post('/api/v1/useraccounts/:id', UserAccount.getOne);
+// Admin create user account
+app.post('/api/v1/adminAllAccounts/create', (req, res) => {
+  res.send(UserAccount.create);
+});
 
-//Admin create user account
-app.post('/api/v1/adminAllAccounts', UserAccount.create);
+// Admin Update user account
 
-//Admin Update user account
+app.put('/api/v1/adminAllAccounts/update/:id', (req, res) => {
+  res.send(UserAccount.update);
+});
 
-app.put('/api/v1/adminAllAccounts/update/:id', UserAccount.update);
-
-//Admin delete account
-app.delete('/api/v1/adminAllAccounts/delete/:id', UserAccount.delete);
+// Admin delete account
+app.delete('/api/v1/adminAllAccounts/delete/:id', (req, res) => {  res.send(UserAccount.delete);
+});
 
 app.post('/api/v1/adminAllAccounts', (req, res) => {
   res.render('adminAllAccounts', {
@@ -248,7 +243,9 @@ app.get('/api/v1/adminCreditClient', (req, res) => {
   });
 });
 
-app.put('/api/v1/adminCreditClient/:id', UserAccount.update);
+app.put('/api/v1/adminCreditClient/:id', (req, res) => {
+ res.send(UserAccount.update);
+});
 
 
 // Admin Activate Clients
@@ -262,6 +259,18 @@ app.post('/api/v1/adminActivateClient', (req, res) => {
     title: 'All Account Page',
   });
 });
-app.listen(3000, function () {
-  console.log("Server is running at port 5000...")
+
+function validateBankaUser(bankaUser) {
+  const schema = {
+    fullName: Joi.string().min(3).required(),
+    userEmail: Joi.string().min(3).required(),
+    password: Joi.string().min(3).required(),
+    nuban: Joi.string().min(3).required()
+  };
+  return Joi.validate(bankaUser, schema);
+}
+
+
+app.listen(3000, () => {
+  console.log('Server is running at port 3000...');
 });
