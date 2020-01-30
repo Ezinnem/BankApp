@@ -1,9 +1,15 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable import/no-unresolved */
 const express = require('express');
 const Joi = require('joi');
 const bodyParser = require('body-parser');
 const cons = require('consolidate');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const path = require('path');
 const UserAccount = require('./controllers/UserAccount');
+const User = require('./controllers/user');
+const UserTransaction = require('./controllers/transaction');
 
 
 // initializing app
@@ -27,54 +33,6 @@ app.use(express.json());
 // set public static files
 app.use(express.static(path.join(__dirname, '/public')));
 
-// Creating a user signup details
-const bankaUsers = [
-  {
-    id: 1,
-    fullName: 'John Doe',
-    userEmail: 'jonny@gmail.com',
-    password: '12345',
-    nuban: '1001201301',
-    accountType: 'Current',
-    Balance: '200,000NGN',
-  },
-  {
-    id: 2,
-    fullName: 'Ngozi Okafor',
-    userEmail: 'ngok@gmail.com',
-    password: '12345',
-    nuban: '1001401501',
-    accountType: 'Savings',
-    Balance: '500,000,000NGN',
-  },
-];
-
-
-const bankaAdmins = [
-  {
-    id: 1,
-    fullName: 'AdJohn Doe',
-    adminEmail: 'jonny@gmail.com',
-    password: '12345',
-  },
-  {
-    id: 2,
-    fullName: 'AdNgozi Okafor',
-    adminEmail: 'ngok@gmail.com',
-    password: '12345',
-
-  },
-];
-
-// Creating an admin signup details
-function BankaAdmin(fullName, adminEmail, password, adminNumber, adminRank) {
-  this.fullName = fullName;
-  this.adminEmail = adminEmail;
-  this.password = password;
-  this.adminNumber = adminNumber;
-  this.adminRank = adminRank;
-}
-
 // home route
 app.get('/', (req, res) => {
   res.render('userLogin.html');
@@ -86,76 +44,67 @@ app.get('/api/v1/userSignUp', (req, res) => {
 });
 
 app.post('/api/v1/userSignUp', (req, res) => {
-  const { error } = validateBankaUser(req.body);
   if (error) {
-    res.status(400).send(error.details[0].message);
-    return;
+    res.status(400).send('All fields are required');
+  } else {
+    res.status(200).send(User.create);
   }
-  let bankauser = {
-    id: bankaUsers.length + 1,
-    fullName: req.body.fullName,
-    userEmail: req.body.userEmail,
-    password: req.body.password,
-    nuban: req.body.nuban,
-  };
-  bankausers.push(bankaUser);
-  res.send(bankauser);
 });
 
-//Login
+// Login
 app.get('/api/v1/userLogin', (req, res) => {
   res.render('userLogin.html');
 });
 
 // userLogin submit
 app.post('/api/v1/userLogin/:id', (req, res) => {
-  const user = bankaUsers.find(c => c.id === parseInt(req.params.id));
-  if (!user) res.send(404).send('User Not Found');
-  // res.sendStatus(`Your Account balance is ${user.Balance}`);
-  res.redirect('/api/v1/userAccountBal/:id');
+  if (!user) {
+    res.status(404).send('User Not Found');
+  } else {
+    res.status(200).send(User.getOne);
+  }
 });
 
 
 // AccountBalance
-app.get('/api/v1/userAccountBal/:id', (req, res) => {
-  const bankaUser = bankaUsers.find((c) => c.id === parseInt(req.params.id));
-
-  if (!bankaUser) res.status(404).send('<h2 style="font-family: Malgun Gothic; color: darkred;">Ooops... Cant find what you are looking for!</h2>');
-  res.sendStatus(bankaUser.Balance);
+app.post('/api/v1/userAccountBal/:id', (req, res) => {
+  if (!bankaUser) {
+    res.status(404).send('Not Found');
+  } else {
+    res.status(200).send(UserAccount.getOne);
+  }
 });
 
 
-app.post('/api/v1/userAccountBal', (req, res) => {
+app.get('/api/v1/userAccountBal/:id', (req, res) => {
   res.render('userAccountBal');
 });
 
 // Accout Transaction
-app.put('/api/v1/userAccTransaction/:id', (req, res) => {
-  const bankaUser = bankaUsers.find((c) => c.id === parseInt(req.params.id));
-  if (!bankaUser) res.status(404).send('Not Found');
+app.get('/api/v1/userAccTransaction', (req, res) => {
+  res.render('userAccTransaction');
+});
 
-  const { error } = validateBankaUser(req.body);
+app.post('/api/v1/userAccTransaction', (req, res) => {
+  if (error) {
+    res.status(400).send('Not Found');
+  } else {
+    res.status(200).send(UserAccount.getOne);
+  }
+});
+
+app.put('/api/v1/userAccTransaction/:id', (req, res) => {
   if (error) {
     res.status(400).send(error.details[0].message);
-    return;
+  } else {
+    res.status(200).send(UserTransaction.update);
   }
-  bankaUser.fullName = req.body.fullName;
-  bankaUser.userEmail = req.body.userEmail;
-  bankaUser.nuban = req.body.nuban;
-  bankaUser.Balance = req.body.Balance;
-  res.send(bankaUser);
 });
-app.get('/api/v1/userAccTransaction', (req, res) => {
-  res.render('userAccTransaction', {
-    title: 'Your Transactions',
-  });
-});
+
 
 // Create Account
 app.get('/api/v1/createAccount', (req, res) => {
-  res.render('createAccount', {
-    title: 'Your Transactions',
-  });
+  res.render('createAccount');
 });
 
 
@@ -163,18 +112,12 @@ app.post('/api/v1/createAccount', (req, res) => {
   const { error } = validateBankaUser(req.body);
   if (error) {
     res.status(400).send(error.details[0].message);
-    return;
+  } else {
+    res.status(200).send(UserAccount.create);
   }
-  const userAccount = {
-    id: UserAccount.length + 1,
-    fullName: req.body.fullName,
-    userEmail: req.body.userEmail,
-    password: req.body.password,
-    nuban: req.body.nuban,
-  };
-  UserAccount.push(userAccount);
-  res.send(userAccount);
 });
+
+
 // ADMIN AND STAFF
 //  Admin SignUp
 
@@ -182,15 +125,11 @@ app.get('/api/v1/adminSignUp', (req, res) => {
   res.render('adminSignUp.html');
 });
 app.post('/api/v1/adminSignUp', (req, res) => {
-  let bankaAdmin = {
-    id: bankaAdmins.length + 1,
-    fullName: req.body.fullName,
-    adminEmail: req.body.adminEmail,
-    password: req.body.password,
-  };
-  bankaAdmins.push(bankaAdmin);
-  // res.send(bankaAdmin);
-  res.redirect('/api/v1/adminLogin');
+  if (error) {
+    res.status(400).send('All fields are required');
+  } else {
+    res.status(200).send(User.create);
+  }
 });
 
 
@@ -201,63 +140,85 @@ app.get('/api/v1/adminLogin', (req, res) => {
 
 // adminLogin submit
 app.post('/api/v1/adminLogin', (req, res) => {
-  res.redirect('/api/v1/adminAllAccounts');
+  if (!user) {
+    res.status(404).send('User Not Found');
+  } else {
+    res.status(200).send(User.getOne);
+  }
 });
 
 //  Admin view all accounts Page
-app.get('/api/v1/adminAllAccounts/all',(req, res) => { 
- res.send(UserAccount.findAll);
+app.get('/api/v1/adminAllAccounts', (req, res) => {
+  res.render('adminAllAccounts');
 });
 
+app.get('/api/v1/adminAllAccounts/all', (req, res) => {
+  if (error) {
+    res.status(400).send('Not Found');
+  } else {
+    res.status(200).send(UserAccount.getAll);
+  }
+});
 // admin view a single account
 app.get('/api/v1/adminAllAccounts/:id', (req, res) => {
-  res.send(UserAccount.findOne);
+  if (error) {
+    res.status(400).send('Not Found');
+  } else {
+    res.status(200).send(UserAccount.getAll);
+  }
 });
 
 // Admin create user account
+
+
 app.post('/api/v1/adminAllAccounts/create', (req, res) => {
-  res.send(UserAccount.create);
+  if (error) {
+    res.status(400).send('All fields are required');
+  } else {
+    res.status(200).send(UserAccount.create);
+  }
 });
 
 // Admin Update user account
 
 app.put('/api/v1/adminAllAccounts/update/:id', (req, res) => {
-  res.send(UserAccount.update);
+  if (error) {
+    res.status(400).send('All fields are required');
+  } else {
+    res.status(200).send(UserAccount.create);
+  }
 });
 
 // Admin delete account
-app.delete('/api/v1/adminAllAccounts/delete/:id', (req, res) => {  res.send(UserAccount.delete);
-});
-
-app.post('/api/v1/adminAllAccounts', (req, res) => {
-  res.render('adminAllAccounts', {
-    title: 'All Account Page',
-  });
+app.delete('/api/v1/adminAllAccounts/delete/:id', (req, res) => {
+  if (error) {
+    res.status(400).send('All fields are required');
+  } else {
+    res.status(200).send(UserAccount.delete);
+  }
 });
 
 // Admin credit accounts
 
 app.get('/api/v1/adminCreditClient', (req, res) => {
-  res.render('adminCreditClient', {
-    title: 'Admin Page',
-  });
+  res.render('adminCreditClient');
 });
 
 app.put('/api/v1/adminCreditClient/:id', (req, res) => {
- res.send(UserAccount.update);
+  if (error) {
+    res.status(400).send('All fields are required');
+  } else {
+    res.status(200).send(UserAccount.update);
+  }
 });
 
 
 // Admin Activate Clients
 app.get('/api/v1/ adminActivateClient', (req, res) => {
-  res.render('adminActivateClient', {
-    title: 'Admin Page',
-  });
+  res.render('adminActivateClient');
 });
 app.post('/api/v1/adminActivateClient', (req, res) => {
-  res.send('Account Activated', {
-    title: 'All Account Page',
-  });
+  res.send('Account Activated');
 });
 
 function validateBankaUser(bankaUser) {
@@ -265,7 +226,7 @@ function validateBankaUser(bankaUser) {
     fullName: Joi.string().min(3).required(),
     userEmail: Joi.string().min(3).required(),
     password: Joi.string().min(3).required(),
-    nuban: Joi.string().min(3).required()
+    nuban: Joi.string().min(3).required(),
   };
   return Joi.validate(bankaUser, schema);
 }
