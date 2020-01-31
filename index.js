@@ -126,23 +126,6 @@ app.get('/api/v1/ adminActivateClient', (req, res) => {
 })
 app.post('/api/v1/adminActivateClient', UserAccount.update)
 
-function validateBankaUser(bankaUser) {
-  const schema = {
-    fullName: Joi.string()
-      .min(3)
-      .required(),
-    userEmail: Joi.string()
-      .min(3)
-      .required(),
-    password: Joi.string()
-      .min(3)
-      .required(),
-    nuban: Joi.string()
-      .min(3)
-      .required()
-  }
-  return Joi.validate(bankaUser, schema)
-}
 
 app.listen(3000, () => {
   console.log('Server is running at port 3000...')
