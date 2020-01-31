@@ -9,7 +9,7 @@ const UserTransaction = {
       });
     }
     const userTransaction = UserTransactionModel.create(req.body);
-    return res.status(201).send(userTransaction);
+    return res.status(200).send(userTransaction);
   },
   // /**
   //  *
@@ -34,7 +34,7 @@ const UserTransaction = {
         message: 'Transaction not found',
       });
     }
-    return res.status(200).send(userTransction);
+    return res.status(200).send(userTransaction);
   },
   // /**
   //  *
@@ -46,7 +46,7 @@ const UserTransaction = {
     const userTransaction = UserTransactionModel.findOne(req.params.id);
     if (!userTransaction) {
       return res.status(404).send({
-        message: 'Transaction not found',
+        message: 'Transaction not found'
       });
     }
     const updatedUserTransaction = UserTransactionModel.update(req.params.id, req.body);
@@ -62,7 +62,7 @@ const UserTransaction = {
     const userTransaction = UserTransactionModel.findOne(req.params.id);
     if (!userTransaction) {
       return res.status(404).send({
-        message: 'userAccount not found',
+        message: 'Transaction not found'
       });
     }
     const ref = UserTransactionModel.delete(req.params.id);

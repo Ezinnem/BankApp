@@ -10,7 +10,7 @@ const User = {
       });
     }
     const user = UserModel.create(req.body);
-    return res.status(201).send(user);
+    return res.status(200).send(user);
   },
   // /**
   //  *
@@ -47,7 +47,7 @@ const User = {
     const user = UserModel.findOne(req.params.id);
     if (!user) {
       return res.status(404).send({
-        message: 'userAccount not found',
+        message: 'userAccount not found'
       });
     }
     const updatedUser = UserModel.update(req.params.id, req.body);
