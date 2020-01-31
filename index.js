@@ -4,8 +4,7 @@ const express = require('express');
 const Joi = require('joi');
 const bodyParser = require('body-parser');
 const cons = require('consolidate');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+
 const path = require('path');
 const UserAccount = require('./controllers/UserAccount');
 const User = require('./controllers/user');
@@ -44,11 +43,10 @@ app.get('/api/v1/userSignUp', (req, res) => {
 });
 
 app.post('/api/v1/userSignUp', (req, res) => {
-  if (error) {
-    res.status(400).send('All fields are required');
-  } else {
-    res.status(200).send(User.create);
-  }
+  res.send({
+    status: 200,
+    data: User.create,
+  });
 });
 
 // Login
@@ -58,17 +56,16 @@ app.get('/api/v1/userLogin', (req, res) => {
 
 // userLogin submit
 app.post('/api/v1/userLogin/:id', (req, res) => {
-  if (!user) {
-    res.status(404).send('User Not Found');
-  } else {
-    res.status(200).send(User.getOne);
-  }
+  res.send({
+    status: 200,
+    data: User.getOne,
+  });
 });
 
 
 // AccountBalance
 app.post('/api/v1/userAccountBal/:id', (req, res) => {
-  if (!bankaUser) {
+  if (!User) {
     res.status(404).send('Not Found');
   } else {
     res.status(200).send(UserAccount.getOne);
@@ -125,7 +122,7 @@ app.get('/api/v1/adminSignUp', (req, res) => {
   res.render('adminSignUp.html');
 });
 app.post('/api/v1/adminSignUp', (req, res) => {
-  if (error) {
+  if (!User) {
     res.status(400).send('All fields are required');
   } else {
     res.status(200).send(User.create);
@@ -140,7 +137,7 @@ app.get('/api/v1/adminLogin', (req, res) => {
 
 // adminLogin submit
 app.post('/api/v1/adminLogin', (req, res) => {
-  if (!user) {
+  if (!User) {
     res.status(404).send('User Not Found');
   } else {
     res.status(200).send(User.getOne);
