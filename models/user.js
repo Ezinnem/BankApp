@@ -1,6 +1,4 @@
 /* eslint-disable space-before-blocks */
-const moment = require('moment');
-const uuid = require('uuid');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -8,13 +6,19 @@ const SECRET_KEY = 'secretkey23456';
 const expiresIn = 24 * 60 * 60;
 class User {
   constructor() {
+    const hashpassword = bcrypt.hashSync(User.password);
+    let accessToken = jwt.sign({
+      id: User.id,
+    }, SECRET_KEY, {
+      expiresIn,
+    });
     this.users = [{
       token: accessToken,
       id: 1,
       email: 'nnamani.ezinne@gmail.com',
       firstName: 'Ezinne',
       lastName: 'Nnamani',
-      password,
+      password: hashpassword,
       type: 'client',
       isAdmin: 'false',
     },
@@ -24,7 +28,7 @@ class User {
       email: 'ify.okeke@gmail.com',
       firstName: 'Ify',
       lastName: 'Okeke',
-      password,
+      password: hashpassword,
       type: 'staff',
       isAdmin: 'true',
     },
@@ -33,7 +37,7 @@ class User {
 
   create(data) {
     const newUser = {
-      token: accessToken,
+      token: data.token || '',
       id: this.users.length + 1,
       email: data.email || '',
       firstName: data.firstName || '',
@@ -42,12 +46,6 @@ class User {
       type: data.type || '',
       isAdmin: data.isAdmin || '',
     };
-    const password = bcrypt.hashSync(data.password);
-    const accessToken = jwt.sign({
-      id: newUser.id,
-    }, SECRET_KEY, {
-      expiresIn,
-    });
     res.status(200).send({
       newUser,
       access_token: accessToken,

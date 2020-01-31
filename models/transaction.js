@@ -4,34 +4,13 @@ const uuid = require('uuid');
 
 class UserTransaction {
   constructor() {
-    this.userTransactions = [{
-      id: 1,
-      createdOn: new Date(),
-      type: 'Savings',
-      accountNumber: 1001001001,
-      cashier: 1,
-      amount: 10000,
-      oldBalance: 120000.58,
-      NewBalance: 130000.58,
-    },
-    {
-      id: 2,
-      createdOn: new Date(),
-      type: 'Savings',
-      accountNumber: 1001001002,
-      cashier: 1,
-      amount: 10000,
-      oldBalance: 30000.58,
-      NewBalance: 40000.58,
-    },
-
-    ];
+    this.userTransactions = [];
   }
 
   create(data) {
     const newUserTransaction = {
-      id: this.userTransactions.length + 1,
-      createdOn: data.createdOn || '',
+      id: uuid.v4,
+      createdOn: moment.now(),
       type: data.type || '',
       accountNumber: data.accountNumber || '',
       cashier: data.cashier || '',
