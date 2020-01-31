@@ -23,7 +23,7 @@ class UserTransaction {
   }
 
   findOne(id) {
-    return this.userTransactions.find((transaction) => transaction.id === id);
+    return this.userTransactions.find((transaction) => transaction.id == id);
   }
 
   findAll() {
@@ -37,4 +37,4 @@ class UserTransaction {
     return {};
   }
 }
-module.exports = UserTransaction;
+module.exports = new UserTransaction();
