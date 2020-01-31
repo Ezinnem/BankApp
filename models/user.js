@@ -6,7 +6,8 @@ const SECRET_KEY = 'secretkey23456'
 const expiresIn = 24 * 60 * 60
 class User {
   constructor() {
-    const hashpassword = bcrypt.hashSync(User.password)
+    const salt = bcrypt.genSaltSync(10)
+    const hashpassword = bcrypt.hashSync("B4c0//", salt)
     let accessToken = jwt.sign(
       {
         id: User.id
@@ -51,11 +52,7 @@ class User {
       type: data.type || '',
       isAdmin: data.isAdmin || ''
     }
-    res.status(200).send({
-      newUser,
-      access_token: accessToken,
-      expires_in: expiresIn
-    })
+    
     this.users.push(newUser)
     return newUser
   }
