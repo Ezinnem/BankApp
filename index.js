@@ -64,9 +64,7 @@ app.get('/api/v1/userAccTransaction', (req, res) => {
   res.render('userAccTransaction')
 })
 
-app.post('/api/v1/userAccTransaction/:id',UserAccount.getOne)
-
-app.put('/api/v1/userAccTransaction/:id', UserTransaction.update)
+app.post('/api/v1/userAccTransaction/:id',UserTransaction.getOne)
 
 // Create Account
 app.get('/api/v1/createAccount', (req, res) => {
@@ -97,7 +95,7 @@ app.get('/api/v1/adminAllAccounts', (req, res) => {
   res.render('adminAllAccounts')
 })
 
-app.get('/api/v1/adminAllAccounts/all', UserAccount.getAll)
+app.post('/api/v1/adminAllAccounts/all', UserAccount.getAll)
 
 // admin view a single account
 app.post('/api/v1/adminAllAccounts/:id', UserAccount.getOne)
@@ -120,15 +118,13 @@ app.get('/api/v1/adminCreditClient', (req, res) => {
   res.render('adminCreditClient')
 })
 
-app.put('/api/v1/adminCreditClient/:id', UserAccount.update)
+app.put('/api/v1/adminCreditClient/:id', UserTransaction.update)
 
 // Admin Activate Clients
 app.get('/api/v1/ adminActivateClient', (req, res) => {
   res.render('adminActivateClient')
 })
-app.post('/api/v1/adminActivateClient', (req, res) => {
-  res.send('Account Activated')
-})
+app.post('/api/v1/adminActivateClient', UserAccount.update)
 
 function validateBankaUser(bankaUser) {
   const schema = {
