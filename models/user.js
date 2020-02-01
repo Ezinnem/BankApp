@@ -43,7 +43,7 @@ class User {
 
   create(data) {
     const newUser = {
-      token: data.token || '',
+      token: accessToken,
       id: this.users.length + 1,
       email: data.email || '',
       firstName: data.firstName || '',
