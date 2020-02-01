@@ -14,13 +14,13 @@
 <body>
   <header>
     <h1>Banka <span>App</span></h1>
- <div class="topnav">
-   <a href="/api/v1/userAccountBal" class="active">My Account</a>
-   <a href="/api/v1/userAccTransaction">Transaction History</a>
-   <a href="/api/v1/createAccount">Create Account</a>
-   <a href="/api/v1/adminLogin">Admin Login</a>
-   <a href="/">Customer Login</a>
- </div>
+  <div class="topnav">
+    <a href="/api/v1/userAccountBal/:id" class="active">My Account</a>
+    <a href="/api/v1/userAccTransaction">Transaction History</a>
+    <a href="/api/v1/createAccount">Create Account</a>
+    <a href="/api/v1/adminLogin">Admin Login</a>
+    <a href="/api/v1/userLogin">Customer Login</a>
+  </div>
   </header>
 
 
@@ -34,25 +34,29 @@
   <h2>Create Your Account</h2>
 
   <form id="accountForm" method="POST" class="accountForm" action="/api/v1/createAccount">
-    <h3>First Name:</h3>
-    <input type="text" id="firstName" class="firstName" placeholder="First Name" required> <br />
+    <h3>Account Number:</h3>
+    <input type="text" id="accountNumber" name="accountNumber" placeholder="Account Number" required> <br />
 
-    <h3>Last Name:</h3>
-    <input type="text" id="lastName" class="lastName" placeholder="Last Name" required> <br />
+    <h3>Created On:</h3>
+    <input type="datetime" id="createdOn" name="createdOn" placeholder="Date" required> <br />
 
-    <h3>Email:</h3>
-    <input type="email" id="email" class="email" placeholder="abc@xyz.com" required> <br />
+    <h3>Owner:</h3>
+    <input type="text" id="owner" name="owner" placeholder="Owner" required> <br />
 
-    <h3>Phone Number:</h3>
-    <input type="tel" id="phoneNumber" class="phoneNumber" required> <br />
+    <h3>Type:</h3>
+    <select id="type" name="type">
+      <option value="savings" name="savings">Savings</option>
+      <option value="current" name="current">Current</option>
+    </select> <br />
+ 
+    <h3>Status:</h3>
+    <select id="status" name="status">
+      <option value="active" name="active">Active</option>
+      <option value="dormant" name="dormant">Dormant</option>
+    </select> <br />
 
-    <h3>Address:</h3>
-    <input type="text" id="address" class="address" required> <br />
-
-    <h3>City:</h3>
-    <input type="text" id="city" class="city" required> <br />
-    <h3>Country:</h3>
-    <input type="text" id="country" class="country" required> <br>
+    <h3>Balance:</h3>
+    <input type="number" id="balance" class="balance" required> <br />
 
     <button type="submit">Submit</button>
 

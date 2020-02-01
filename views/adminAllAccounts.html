@@ -12,13 +12,14 @@
 
 <body>
   <div class="topnav">
-    <a href="/adminSignUp" class="active">Create Admin Account</a>
-    <a href="/adminActivateClient">Deactivate/Activate Client</a>
-    <a href="/adminCreditClient">Credit/Debit Client</a>
-    <a href="/adminAllAccounts">All Clients</a>
-    <a href="/adminLogin">Admin Login</a>
-    <a href="/userLogIn">Customer Login</a>
+    <a href="/api/v1/adminSignUp" class="active">Create Admin Account</a>
+    <a href="/api/v1/adminActivateClient">Deactivate/Activate Client</a>
+    <a href="/api/v1/adminCreditClient">Credit/Debit Client</a>
+    <a href="/api/v1/adminAllAccounts/all">All Clients</a>
+    <a href="/api/v1/adminLogin">Admin Login</a>
+    <a href="/api/v1/userLogIn">Customer Login</a>
   </div>
+
 
 
   <h1>Welcome to <b><span>Banka</span></b></h1>
@@ -26,47 +27,13 @@
 
   <h2>View All users</h2>
   <h2>View single user</h2>
- 
-  <form action="/api/v1/userAccounts" method="POST">
-  <table>
-    <tr>
-      <th>S/N</th>
-      <th>Client Name</th>
-      <th>Account Number</th>
-      <th>Balance(NGN)</th>
-      <th>Options</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Alfreds Futterkiste</td>
-      <td>3019281029</td>
-      <td>12000654.76</td>
-      <td><button formaction="/api/v1/userAccounts/:id" id="view">View</button></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Casey Laff</td>
-      <td>29916192823</td>
-      <td>87600654.76</td>
-      <td><button formaction="/api/v1/userAccounts/:id" id="view">View</button></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>John Hillz</td>
-      <td>2208374789</td>
-      <td>436712654.76</td>
-      <td><button formaction="/api/v1/userAccounts/:id" id="view">View</button></td>
-    </tr>
 
-  </table>
-
-  </form>
-
-  <form action='/api/v1/adminAllAccounts' method="POST">
+  <form action='/api/v1/adminAllAccounts/create' method="POST">
+    
   <button type="submit">Create User Account</button>
   </form>
 
-  <form action="/api/v1/adminAllAccounts" method="POST">
+  <form action="/api/v1/adminAllAccounts/all" method="POST">
     <button type="submit">Get All Account</button>
   </form>
 

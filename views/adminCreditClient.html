@@ -15,7 +15,7 @@
     <a href="/api/v1/adminSignUp" class="active">Create Admin Account</a>
     <a href="/api/v1/adminActivateClient">Deactivate/Activate Client</a>
     <a href="/api/v1/adminCreditClient">Credit/Debit Client</a>
-    <a href="/api/v1/adminAllAccounts">All Clients</a>
+    <a href="/api/v1/adminAllAccounts/all">All Clients</a>
     <a href="/api/v1/adminLogin">Admin Login</a>
     <a href="/api/v1/userLogIn">Customer Login</a>
   </div>
@@ -26,18 +26,34 @@
   <h2>Credit User</h2>
   <h2>Debit User</h2>
 
-  <form action="">
-    Full name:<br>
-    <input type="text" name="fullName" id="fullName" required><br>
+  <form action="/api/v1/adminCreditClient/:id">
+    <h3>ID:</h3>
+    <input type="number" name="id" id="id" required><br>
+    <h3>DATE:</h3>
+    <input type="date" name="createdOn" id="createdOn" required><br>
   
-    NUBAN:<br>
-    <input type="number" name="nuban" id="nuban">
-    <br>
-    <br />
-    BALANCE:<br>
-    <input type="number" name="Balance" id="Balance">
-    <br>
-    <br />
+     <h3>Type:</h3>
+     <select id="type" name="type">
+       <option value="savings" name="savings">Savings</option>
+       <option value="current" name="current">Current</option>
+     </select> <br />
+    
+    <h3>ACCOUNT NUMBER:</h3>
+    <input type="number" name="accountNumber" id="accountNumber" required><br>
+
+    <h3>CASHIER:</h3>
+    <input type="number" name="cashier" id="cashier" required><br>
+
+    <h3>AMOUNT:</h3>
+    <input type="number" name="cashier" id="cashier" required><br>
+
+    <h3>OLD BALANCE:</h3>
+    <input type="number" name="oldBalance" id="oldBalance" required><br>
+
+    <h3>NEW BALANCE:</h3>
+    <input type="number" name="newBalance" id="newBalance" required><br>
+    
+
     <input type="submit" value="Credit" id="credit"> <input type="submit" value="Debit" id="debit">
   </form>
 
