@@ -10,7 +10,7 @@ const User = {
       });
     }
     const user = UserModel.create(req.body);
-    return res.status(201).send(user);
+    return res.status(200).send(user);
   },
   // /**
   //  *

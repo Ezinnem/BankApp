@@ -18,42 +18,39 @@
 
     <fieldset>
       <h3><legend>Personal Details</legend></h3>
-    <h4>Full Name:</h4> 
-    <input id ="fullName" type="text" placeholder="FULL Name" required>
-
-    <h4>Email Address:</h4> 
-    <input id="userEmail" type='email' placeholder="abc@xyz.com" required>
+    <h4>Email Address:</h4>
+    <input id="email" name="email" type='email' placeholder="abc@xyz.com" required>
+    <h4>First Name:</h4> 
+    <input id="firstName" name="firstName" type="text" placeholder="First Name" required>
+    <h4>Last Name:</h4>
+    <input id="lastName" name="lastName" type="text" placeholder="Last Name" required>
 
     <h4>Password:</h4>
-    <input id="password" type='password' placeholder="password" required>
+    <input id="password" name="password" type='password' placeholder="password" required>
 
     <h4>Confirm Password:</h4>
-    <input id="confirmPassword" type='password' placeholder="password" required>
-    </fieldset> <br/>
-
-    <fieldset>
-      <h3><legend>Account Details</legend></h3>
-      <h4>Account Number:</h4>
-      <input id="AccNumber" type="number" placeholder="NUBAN" required>
-      
-      <h4>
-        <label>Select Account type</label>
-        <select id="accountType">
-          <option value="Savings">Savings Account</option>
-          <option value="Current">Curent Account</option>
-          <option value="Coperate">Coperate Account</option>
-          <option value="Fixed-Deposit">Fixed Deposit</option>
-        </select>
-      </h4>
+    <input id="confirmPassword" name="confirmPassword" type='password' placeholder="password" required>
     </fieldset>
-    <br/>
+    <fieldset>
+    <h3><legend>User-Rank Details</legend></h3>
+    <h4>Type:</h4>
+    <select id="type" name="type">
+      <option value="client">Client</option>
+      <option value="staff">Staff</option>
+    </select>
+    <h4>Admin:</h4>
+    <select id="isAdmin" name="isAdmin">
+      <option value="true" name="true">True</option>
+      <option value="false" name="false">False</option>
+    </select>
+    </fieldset> <br>
 
 <button type="submit" value="SIGN UP">SIGN UP </button>
 
 
   </form>
-  <form action="/" method="POST">
-<p>Already a user? Click <a href="userLogIn.html">here</a> to log in</p>
+  <form action="/api/v1/userLogIn" method="GET">
+<p>Already a user? Click <a href="/api/v1/userLogIn">here</a> to log in</p>
 </form>
 
 

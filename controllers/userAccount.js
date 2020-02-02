@@ -5,7 +5,7 @@ const UserAccount = {
   create(req, res) {
     if (!req.body.id && !req.body.accountNumber && !req.body.createdOn && !req.body.owner && !req.body.type && !req.body.status && !req.body.balance) {
       return res.status(400).send({
-        message: 'All fields are required',
+        message: 'All fields are required'
       });
     } 
     const userAccount = UserAccountModel.create(req.body);
@@ -19,7 +19,7 @@ const UserAccount = {
   //  */
   getAll(req, res) {
     const userAccounts = UserAccountModel.findAll();
-    return res.status(200).send(userAccounts);
+    return res.status(200).send(userAccounts);` `
   },
   // /**
   //  *

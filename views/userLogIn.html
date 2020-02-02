@@ -14,17 +14,17 @@
 
   <h1>Dear Esteemed Customer,Welcome to <b><span>Banka</span></b></h1>
   <h3>User <span>LogIn</span></h3>
-  <form method="POST" id="userLoginForm" action="/api/v1/userAccountBal">
+  <form method="POST" id="userLoginForm" action="/api/v1/userLogin/:id">
     <h3>Email: </h3>
-    <input type="email" id="userEmail" placeholder="abc@xyz.com" required>
+    <input type="email" id="email" name="email" placeholder="abc@xyz.com" required>
 
     <h3>Password: </h3>
-    <input type="password" id="password" placeholder="password" required>
+    <input type="password" id="password" name="password" placeholder="password" required>
     <p>Forgot password? Click <a href="#">here</a> to retrieve</p>
     <button type="submit" value="Log In">Log In</button>
 
   </form>
-  <form action="/userSignUp" method="POST">
+  <form action="/userSignUp" method="GET">
   <p>Not registered yet? Click <a href="/api/v1/userSignUp">here</a> to sign up</p>
   </form>
 

@@ -12,13 +12,14 @@
 
 <body>
   <div class="topnav">
-    <a href="/adminSignUp" class="active">Create Admin Account</a>
-    <a href="/adminActivateClient">Deactivate/Activate Client</a>
-    <a href="/adminCreditClient">Credit/Debit Client</a>
-    <a href="/adminAllAccounts">All Clients</a>
-    <a href="/adminLogin">Admin Login</a>
-    <a href="/userLogIn">Customer Login</a>
+    <a href="/api/v1/adminSignUp" class="active">Create Admin Account</a>
+    <a href="/api/v1/adminActivateClient">Deactivate/Activate Client</a>
+    <a href="/api/v1/adminCreditClient">Credit/Debit Client</a>
+    <a href="/api/v1/adminAllAccounts/all">All Clients</a>
+    <a href="/api/v1/adminLogin">Admin Login</a>
+    <a href="/api/v1/userLogIn">Customer Login</a>
   </div>
+
 
 
 
@@ -27,62 +28,15 @@
 
   <h2>Activate user</h2>
   <h2>Deactivate User</h2>
+   <form action="/api/v1/adminActivateClient" method="POST" id="activate" name="activate">Activate</form>
+        
+  <h2>Deactivate User</h2>
+   <form action="/api/v1/adminDeactivateClient"  method="POST" id="deactivate">Deactivate</form>
 
-  <table>
-    <tr>
-      <th>S/N</th>
-      <th>Client Name</th>
-      <th>Account Number</th>
-      <th>Balance(NGN)</th>
-      <th>Activate</th>
-      <th>Deactivate</th>
-      <th>Delete</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Alfreds Futterkiste</td>
-      <td>3019281029</td>
-      <td>12000654.76</td>
-      <td><form action="/adminActivateClient" method="POST" id="activate">Activate</form></td>
-      <td><form action="/adminDeactivateClient"  method="POST" id="deactivate">Deactivate</form></td>
-      <td>
-        <form method="POST" action="/api/v1/adminAllAccounts/delete/:id'" id="delete">Delete</form>
-      </td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Casey Laff</td>
-      <td>29916192823</td>
-      <td>87600654.76</td>
-      <td>
-        <form action="/adminActivateClient" method="POST"id="activate">Activate</form>
-      </td>
-      <td>
-        <form action="/adminDeactivateClient" method="POST"id="deactivate">Deactivate</form>
-      </td>
-      <td>
-        <form method="POST" action="/api/v1/adminAllAccounts/delete/:id" id="delete">Delete</form>
-      </td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>John Hillz</td>
-      <td>2208374789</td>
-      <td>436712654.76</td>
-     <td>
-       <form action="/api/v1/adminActivateClient" method="POST"id="activate">Activate</form>
-     </td>
-     <td>
-       <form action="/api/v1/adminDeactivateClient" method="POST" id="deactivate">Deactivate</form>
-     </td>
-      <td>
-        <form method="POST" action="/api/v1/adminAllAccounts/delete/:id" id="delete">Delete</form>
-      </td>
-    </tr>
-
-  </table>
-
-  </form>
+<h2>Delete User</h2>
+<form method="POST" action="/api/v1/adminAllAccounts/delete/:id" id="delete" name="delete">Delete<form>
+     
+     
   <footer>
     &copy; ZinnyCode 2020
   </footer>
