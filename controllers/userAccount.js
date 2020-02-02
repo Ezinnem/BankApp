@@ -1,13 +1,13 @@
 const UserAccountModel = require('../models/userAccount');
 
-let UserAccount = {
-  
+const UserAccount = {
+
   create(req, res) {
-    if (!req.body.fullName && !req.body.userEmail && !req.body.password && !req.body.nuban) {
+    if (!req.body.id && !req.body.accountNumber && !req.body.createdOn && !req.body.owner && !req.body.type && !req.body.status && !req.body.balance) {
       return res.status(400).send({
-        message: "All fields are required"
+        message: 'All fields are required'
       });
-    }
+    } 
     const userAccount = UserAccountModel.create(req.body);
     return res.status(201).send(userAccount);
   },
@@ -19,7 +19,7 @@ let UserAccount = {
   //  */
   getAll(req, res) {
     const userAccounts = UserAccountModel.findAll();
-    return res.status(200).send(userAccounts);
+    return res.status(200).send(userAccounts);` `
   },
   // /**
   //  *
@@ -31,7 +31,7 @@ let UserAccount = {
     const userAccount = UserAccountModel.findOne(req.params.id);
     if (!userAccount) {
       return res.status(404).send({
-        message: "userAccount not found"
+        message: 'userAccount not found',
       });
     }
     return res.status(200).send(userAccount);
@@ -43,10 +43,10 @@ let UserAccount = {
   //  * @returns {object} updated reflection
   //  */
   update(req, res) {
-    const userAccount =     UserAccountModel.findOne(req.params.id);
+    const userAccount = UserAccountModel.findOne(req.params.id);
     if (!userAccount) {
       return res.status(404).send({
-        message: "userAccount not found"
+        message: 'userAccount not found',
       });
     }
     const updatedUserAccount = UserAccountModel.update(req.params.id, req.body);
@@ -62,12 +62,12 @@ let UserAccount = {
     const userAccount = UserAccountModel.findOne(req.params.id);
     if (!userAccount) {
       return res.status(404).send({
-        message: "userAccount not found"
+        message: 'userAccount not found',
       });
     }
     const ref = UserAccountModel.delete(req.params.id);
     return res.status(204).send(ref);
-  }
+  },
 };
 
 module.exports = UserAccount;

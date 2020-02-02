@@ -12,57 +12,30 @@
 
  <body>
    <div class="topnav">
-     <a href="/api/v1/userAccountBal" class="active">My Account</a>
+     <a href="/api/v1/userAccountBal/:id" class="active">My Account</a>
      <a href="/api/v1/userAccTransaction">Transaction History</a>
      <a href="/api/v1/createAccount">Create Account</a>
      <a href="/api/v1/adminLogin">Admin Login</a>
-     <a href="/">Customer Login</a>
+     <a href="/api/v1/userLogin">Customer Login</a>
+   </div>
+
+   <div class="profile">
+     <h2>PROFILE: </h2>
+     <p>Name : JAZZ PETERS</p>
+     <p>NUBAN: 263829019</p>
+     <p>Acount Type : Fixed Deposit</p>
+     <p>Account Balance: 23544162.67NGN</p>
    </div>
 
 <form action="/api/v1/userAccTransaction" method="POST">
    <h1>Dear Esteemed Customer,Welcome to <b><span>Banka</span></b></h1>
 
-   <div class="profile">
-     <h2>PROFILE: </h2>
-     <p>Name : JAZZ PETERS</p>
-      <p>NUBAN: 263829019</p>
-      <p>Acount Type : Fixed Deposit</p>
-      <p>Account Balance: 23544162.67NGN</p>
-   </div>
+   
    
 
 <div class="history">
  <h2>Transaction History</h2>
- <table class="transactionHistory">
-   <tr>
-     <th>DATE</th>
-     <th>ID</th>
-     <th>NUBAN/DESC</th>
-     <th>AMOUNT</th>
-   </tr>
-   <tr>
-     <td>2020-1-16</td>
-     <td>1</td>
-     <td>290168268/FIP</td>
-     <td>-56000NGN</td>
-   </tr>
-
-   <tr>
-     <td>2020-1-16</td>
-     <td>2</td>
-     <td>290168268/FIP</td>
-     <td>76000NGN</td>
-   </tr>
-
-   <tr>
-     <td>2020-1-09</td>
-     <td>3</td>
-     <td>290168268/FIP</td>
-     <td>-1500NGN</td>
-   </tr>
- </table>
-
-</div>
+ 
 </form>
   
 
